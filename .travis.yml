@@ -1,0 +1,11 @@
+language: php
+
+install:
+  - curl http://cs.sensiolabs.org/get/php-cs-fixer.phar -o php-cs-fixer.phar
+
+script:
+  - phpunit
+  - if [[ `php -r "echo version_compare(PHP_VERSION, '7.1.0', '>=');"` ]]; then php php-cs-fixer.phar --dry-run -v fix .; fi
+
+php:
+  - 7.1
